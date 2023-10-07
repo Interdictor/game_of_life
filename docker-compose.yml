@@ -1,0 +1,27 @@
+services:
+  # front:
+  #   build:
+  #     context: ./front/
+  #     target: dev
+  #   volumes:
+  #     - front_modules:/opt/workdir/node_modules/
+  #     - type: bind
+  #       source: ./front/
+  #       target: /opt/workdir/
+  #   environment:
+  #     - MAIN_PORT=12000
+  #   ports:
+  #     - 12000:12000
+
+  vscaffolder:
+    build:
+      context: .
+      dockerfile: Dockerfile.vite
+      target: dev
+    volumes:
+      - type: bind
+        source: .
+        target: /opt/workdir/
+
+# volumes:
+#   front_modules:
