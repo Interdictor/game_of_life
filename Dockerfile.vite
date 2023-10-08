@@ -1,4 +1,4 @@
-FROM node:18.16-buster-slim AS dev
+FROM node:20.8-buster-slim AS dev
 
 ENV WORKPATH /opt/workdir/
 ENV USERNAME=node

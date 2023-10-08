@@ -1,17 +1,17 @@
 services:
-  # front:
-  #   build:
-  #     context: ./front/
-  #     target: dev
-  #   volumes:
-  #     - front_modules:/opt/workdir/node_modules/
-  #     - type: bind
-  #       source: ./front/
-  #       target: /opt/workdir/
-  #   environment:
-  #     - MAIN_PORT=12000
-  #   ports:
-  #     - 12000:12000
+  rfront:
+    build:
+      context: ./rfront/
+      target: dev
+    volumes:
+      - rfront_modules:/opt/workdir/node_modules/
+      - type: bind
+        source: ./rfront/
+        target: /opt/workdir/
+    environment:
+      - MAIN_PORT=12000
+    ports:
+      - 12000:12000
 
   vscaffolder:
     build:
@@ -23,5 +23,5 @@ services:
         source: .
         target: /opt/workdir/
 
-# volumes:
-#   front_modules:
+volumes:
+  rfront_modules:
