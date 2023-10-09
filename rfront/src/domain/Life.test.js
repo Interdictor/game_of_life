@@ -7,6 +7,11 @@ describe('Life', () => {
 
     life.update()
 
+    life.selectCell()
+    life.start()
+    life.stop()
+    life.clear()
+
     const tissue = life.serialize().tissue
     expect(tissue).toEqual([])
   })
