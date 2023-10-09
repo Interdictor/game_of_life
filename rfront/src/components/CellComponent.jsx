@@ -5,7 +5,21 @@ export function CellComponent({ cellData, toggleCell }) {
     classNames += 'alive'
   }
 
+  const handleMouseEnter = (event) => {
+    const mouseIsDown = event.buttons === 1
+
+    if(mouseIsDown) {
+      toggleCell(cellData.position)
+    }
+  }
+
   return (
-    <div onClick={() => { toggleCell(cellData.position) }} className={classNames}></div>
+    <div
+      id={cellData.id}
+      onClick={() => { toggleCell(cellData.position) }}
+      // onMouseEnter={() => { console.log({ x: cellData.id })}}
+      onMouseEnter={handleMouseEnter}
+      className={classNames}
+    />
   )
 }

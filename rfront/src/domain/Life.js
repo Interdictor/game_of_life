@@ -1,9 +1,11 @@
-import { Cell } from "./Cell"
-import { Position } from "./Position"
+import { Cell } from './Cell'
+import { NeighboursCounter } from './NeighboursCounter'
+import { Position } from './Position'
+import { cloneDeep } from 'lodash';
 
-const COLUMNS = 2
-const ROWS = 2
-const PERIOD = 1000
+const COLUMNS = 16
+const ROWS = 24
+const PERIOD = 100
 
 export class Life {
   constructor() {
@@ -12,11 +14,14 @@ export class Life {
     this._isRunning = false
     this._timeoutId = null
     this._tissue = this._generateCleanTissue()
+    this._neighbourCounter = new NeighboursCounter()
   }
 
   start() {
-    this._isRunning = true
-    this._updateRecursively()
+    if(!this._isRunning && this._anyAliveCell()) {
+      this._isRunning = true
+      this._updateRecursively()
+    }
   }
 
   stop() {
@@ -40,18 +45,6 @@ export class Life {
     }
   }
 
-  _updateRecursively() {
-    if (this._isRunning) {
-      this._timeoutId = setTimeout(
-        () => {
-          this._notifyObservers()
-          this._updateRecursively()
-        },
-        PERIOD
-      )
-    }
-  }
-
   addObserver(observer) {
     this.observers.push(observer)
   }
@@ -62,6 +55,41 @@ export class Life {
       tissue: this._tissue.map((cell) => { return cell.serialize() })
     }
   }
+
+  _updateRecursively() {
+    if (!this._anyAliveCell()) {
+      this.stop()
+    }
+
+    if (this._isRunning) {
+      this._timeoutId = setTimeout(
+        () => {
+          this._updateTissue()
+          this._notifyObservers()
+          this._updateRecursively()
+        },
+        PERIOD
+      )
+    }
+  }
+
+  _anyAliveCell() {
+    return !!this._tissue.find((cell) => { return cell.isAlive() })
+  }
+
+  _updateTissue() {
+    const currentState = cloneDeep(this._tissue)
+
+    for (const cell of this._tissue) {
+      const aliveNeighbours = this._neighbourCounter.count(
+        cell.serialize().position,
+        currentState
+      )
+
+      cell.update(aliveNeighbours)
+    }
+  }
+
 
   _generateCleanTissue() {
     const tissue = []

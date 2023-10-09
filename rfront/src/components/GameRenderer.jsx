@@ -25,10 +25,12 @@ export function GameRenderer({ life }) {
           />
         ))}
       </div>
-      <button onClick={() => { life.start() }}>START</button>
-      <button onClick={() => { life.stop() }}>STOP</button>
-      <button onClick={() => { life.clear() }}>CLEAR</button>
 
+      <div>
+        <button onClick={() => { life.start() }}>START</button>
+        <button onClick={() => { life.stop() }}>STOP</button>
+        <button onClick={() => { life.clear() }}>CLEAR</button>
+      </div>
     </div>
   )
 }
