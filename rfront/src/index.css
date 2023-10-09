@@ -50,7 +50,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #86f4e0;
+  border-color: #a8ffdf;
 
 }
 button:focus,

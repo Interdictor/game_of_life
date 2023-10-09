@@ -1,5 +1,5 @@
 const COLUMNS = 16
-const ROWS = 30
+const ROWS = 28
 
 export class CardinalStrategy {
   perform(positionData) {
