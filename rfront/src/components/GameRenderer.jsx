@@ -17,7 +17,6 @@ export function GameRenderer({ life }) {
     <div>
       <div className='game-grid'>
         { gameData.tissue.map((cell) => (
-          // <div key={wadus} className='cell' onClick={life.update.bind(life)}></div>
           <CellComponent
             key={cell.id}
             cellData={cell}

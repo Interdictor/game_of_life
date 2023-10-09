@@ -4,8 +4,8 @@ import { Position } from './Position'
 import { cloneDeep } from 'lodash';
 
 const COLUMNS = 16
-const ROWS = 24
-const PERIOD = 100
+const ROWS = 30
+const PERIOD = 150
 
 export class Life {
   constructor() {

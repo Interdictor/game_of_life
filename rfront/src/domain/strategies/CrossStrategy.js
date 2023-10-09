@@ -1,5 +1,5 @@
 const COLUMNS = 16
-const ROWS = 24
+const ROWS = 30
 
 export class CrossStrategy {
   perform(positionData) {

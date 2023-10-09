@@ -1,6 +1,6 @@
 .game-grid {
   display: inline-grid;
-  gap: 2px;
+  gap: 3px;
   grid-template-columns: repeat(16, 1fr);
 }
 
@@ -11,5 +11,5 @@
 }
 
 .alive {
-  background-color: aquamarine;
+  background-color: rgb(107, 234, 191);
 }
